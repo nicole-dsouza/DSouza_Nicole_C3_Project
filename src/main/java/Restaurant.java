@@ -62,9 +62,17 @@ public class Restaurant {
         return name;
     }
 
-    public int calculateOrderValue(List<String> itemNames) {
-        // TODO: Implement the logic to calculate the order value based on the item names
-        return 0; // Placeholder return value
+    public int calculateOrderValue(List<String> itemNames) throws itemNotFoundException {
+        int totalOrderValue = 0;
+        for (String itemName : itemNames) {
+            Item item = findItemByName(itemName);
+            if (item == null) {
+                throw new itemNotFoundException(itemName);
+            }
+            totalOrderValue += item.getPrice();
+        }
+        return totalOrderValue;
     }
+
 
 }
