@@ -2,6 +2,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
@@ -68,5 +69,19 @@ class RestaurantTest {
         assertEquals(119, menu.get(0).getPrice());
         assertEquals("Vegetable lasagne", menu.get(1).getName());
         assertEquals(269, menu.get(1).getPrice());
+    }
+
+    @Test
+    public void calculate_order_value_should_return_total_price_of_selected_items() throws itemNotFoundException {
+        restaurant.addToMenu("Butter Chicken", 100);
+        restaurant.addToMenu("Paneer Tikka Masala", 200);
+        restaurant.addToMenu("Butter Chicken Kulcha", 300);
+
+        List<String> itemNames = new ArrayList<>();
+        itemNames.add("Butter Chicken");
+        itemNames.add("Butter Chicken Kulcha");
+
+        int orderValue = restaurant.calculateOrderValue(itemNames);
+        assertEquals(400, orderValue);
     }
 }

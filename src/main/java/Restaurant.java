@@ -62,4 +62,9 @@ public class Restaurant {
         return name;
     }
 
+    public int calculateOrderValue(List<String> itemNames) {
+        // TODO: Implement the logic to calculate the order value based on the item names
+        return 0; // Placeholder return value
+    }
+
 }
